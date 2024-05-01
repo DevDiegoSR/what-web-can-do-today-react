@@ -10,6 +10,7 @@ import {
 
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 
+import compass from "../assets/compass.svg";
 import compassNeedle from "../assets/compass-needle.svg";
 
 function DeviceOrientation() {
@@ -65,10 +66,11 @@ function DeviceOrientation() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-[url('../../public/compass.svg')] bg-contain bg-no-repeat bg-center h-52 w-full grid place-items-center">
+          <div className="grid place-items-center">
+            <img className="h-96" src={compass} alt="compass-needle" />
             <img
               ref={compassNeedleRef}
-              className="h-24 ml-3"
+              className="h-24 ml-3 absolute"
               src={compassNeedle}
               alt="compass-needle"
             />
