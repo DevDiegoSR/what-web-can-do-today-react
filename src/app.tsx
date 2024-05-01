@@ -5,7 +5,7 @@ import { ContextProviders } from "./components/context-providers";
 export function App() {
   return (
     <ContextProviders>
-      <BrowserRouter basename="/what-web-can-do-today-react">
+      <BrowserRouter basename="/">
         <Router />
       </BrowserRouter>
     </ContextProviders>
