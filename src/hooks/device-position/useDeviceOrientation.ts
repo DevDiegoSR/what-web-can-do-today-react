@@ -8,6 +8,7 @@ export const useDeviceOrientation = () => {
   const [error, setError] = useState<TDeviceOrientationError | null>(null);
 
   const onChange = (event: DeviceOrientationEvent) => {
+    console.log(event);
     setDeviceOrientation({
       absolute: event.absolute,
       alpha: event.alpha,
@@ -26,11 +27,11 @@ export const useDeviceOrientation = () => {
       return;
     }
 
-    window.addEventListener("deviceorientation", onChange, false);
+    window.addEventListener("deviceorientationabsolute", onChange, true);
   };
 
   const cleanUpDeviceOrientation = () => {
-    window.removeEventListener("deviceorientation", onChange, false);
+    window.removeEventListener("deviceorientationabsolute", onChange, true);
     setDeviceOrientation(null);
     setError(null);
   };

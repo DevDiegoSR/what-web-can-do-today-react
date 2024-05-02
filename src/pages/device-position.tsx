@@ -11,7 +11,6 @@ import {
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 
 import compass from "../assets/compass.svg";
-import compassNeedle from "../assets/compass-needle.svg";
 
 function DeviceOrientation() {
   const {
@@ -21,7 +20,7 @@ function DeviceOrientation() {
     cleanUpDeviceOrientation,
   } = useDeviceOrientation();
 
-  const compassNeedleRef = useRef<HTMLImageElement | null>(null);
+  const compassleRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
     getDeviceOrientation();
@@ -29,12 +28,12 @@ function DeviceOrientation() {
   }, []);
 
   useEffect(() => {
-    if (compassNeedleRef.current) {
-      compassNeedleRef.current.style.transform = `rotate(${deviceOrientation?.alpha}deg)`;
+    if (compassleRef.current) {
+      compassleRef.current.style.transform = `rotate(${deviceOrientation?.alpha}deg)`;
     }
     return () => {
-      if (compassNeedleRef.current) {
-        compassNeedleRef.current.style.transform = `rotate(0deg)`;
+      if (compassleRef.current) {
+        compassleRef.current.style.transform = `rotate(0deg)`;
       }
     };
   }, [deviceOrientation?.alpha]);
@@ -66,12 +65,11 @@ function DeviceOrientation() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid place-items-center">
-            <img className="h-96" src={compass} alt="compass-needle" />
+          <div className="w-full h-96 grid place-items-center">
             <img
-              ref={compassNeedleRef}
-              className="h-24 ml-3 absolute"
-              src={compassNeedle}
+              ref={compassleRef}
+              className="h-72 w-72"
+              src={compass}
               alt="compass-needle"
             />
           </div>
