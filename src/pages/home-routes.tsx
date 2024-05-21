@@ -9,6 +9,11 @@ import {
   MdVibration,
   MdBatteryFull,
   MdMemory,
+  MdGesture,
+  MdMic,
+  MdContentPaste,
+  MdMouse,
+  MdColorize,
 } from "react-icons/md";
 
 export const homeRoutes = {
@@ -83,6 +88,43 @@ export const homeRoutes = {
       to: "/device-memory",
       title: "Device Memory",
       icon: <MdMemory size={20} />,
+      isAvailable: true,
+    },
+  ],
+  input: [
+    {
+      id: "1",
+      to: "/touch-gestures",
+      title: "Touch Gestures",
+      icon: <MdGesture size={20} />,
+      isAvailable: true,
+    },
+    {
+      id: "2",
+      to: "/speech-recognition",
+      title: "Speech Recognition",
+      icon: <MdMic size={20} />,
+      isAvailable: true,
+    },
+    {
+      id: "3",
+      to: "/clipboard",
+      title: "Clipboard (Copy & Paste)",
+      icon: <MdContentPaste size={20} />,
+      isAvailable: true,
+    },
+    {
+      id: "4",
+      to: "/pointing-device-adaptation",
+      title: "Pointing Device Adaptation",
+      icon: <MdMouse size={20} />,
+      isAvailable: true,
+    },
+    {
+      id: "5",
+      to: "/eye-dropper",
+      title: "Eye Dropper",
+      icon: <MdColorize size={20} />,
       isAvailable: true,
     },
   ],

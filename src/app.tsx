@@ -5,7 +5,7 @@ import { ContextProviders } from "./components/context-providers";
 export function App() {
   return (
     <ContextProviders>
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/wwcdtr">
         <Router />
       </BrowserRouter>
     </ContextProviders>

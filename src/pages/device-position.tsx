@@ -18,6 +18,7 @@ function DeviceOrientation() {
     error,
     getDeviceOrientation,
     cleanUpDeviceOrientation,
+    isIos,
   } = useDeviceOrientation();
 
   const compassleRef = useRef<HTMLImageElement | null>(null);
@@ -38,6 +39,8 @@ function DeviceOrientation() {
     };
   }, [deviceOrientation?.alpha]);
 
+  console.log(isIos);
+
   return (
     <>
       <Card>
@@ -51,6 +54,11 @@ function DeviceOrientation() {
             <li>beta: {deviceOrientation?.beta}</li>
             <li>gamma: {deviceOrientation?.gamma}</li>
             <li>timestamp: {deviceOrientation?.timestamp}</li>
+            <li>isIos: {String(isIos)}</li>
+            <li>
+              webkitCompassHeading: {deviceOrientation?.webkitCompassHeading}
+            </li>
+            <li>compass: {deviceOrientation?.compass}</li>
             <li>error: {error?.message}</li>
           </ul>
         </CardContent>

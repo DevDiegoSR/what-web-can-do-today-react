@@ -4,9 +4,15 @@ export type TDeviceOrientation = {
   beta: number | null;
   gamma: number | null;
   timestamp: number;
+  webkitCompassHeading?: number | null;
+  compass: number | null;
 };
 
+enum OrientationErrorCode {
+  PERMISSION_DENIED = 1,
+}
+
 export type TDeviceOrientationError = {
-  code: 9999;
+  code: OrientationErrorCode | 9999;
   message: string;
 };
