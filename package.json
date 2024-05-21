@@ -2,7 +2,7 @@
   "name": "what-web-can-do-today-react",
   "private": true,
   "version": "0.0.0",
-  "homepage": "/wwcdtr",
+  "homepage": "/",
   "type": "module",
   "scripts": {
     "dev": "vite",
