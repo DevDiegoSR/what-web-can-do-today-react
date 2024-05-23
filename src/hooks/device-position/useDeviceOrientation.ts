@@ -14,6 +14,9 @@ export const useDeviceOrientation = () => {
   });
 
   const onChange = (event: DeviceOrientationEvent) => {
+    // @ts-ignore
+    alert(`onChange: ${event.webkitCompassHeading ?? event.alpha}`);
+
     setDeviceOrientation({
       absolute: event.absolute,
       alpha: event.alpha,
@@ -39,6 +42,7 @@ export const useDeviceOrientation = () => {
 
     // @ts-ignore
     if (isIos && typeof DeviceMotionEvent.requestPermission === "function") {
+      alert(`isIos: ${isIos}`);
       // @ts-ignore
       DeviceOrientationEvent.requestPermission() // requestPermission does not exist on DeviceOrientationEvent
         .then((response: any) => {
