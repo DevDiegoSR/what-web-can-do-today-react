@@ -43,7 +43,7 @@ export const useDeviceOrientation = () => {
       DeviceOrientationEvent.requestPermission() // requestPermission does not exist on DeviceOrientationEvent
         .then((response: any) => {
           if (response === "granted") {
-            window.addEventListener("deviceorientation", onChange, true);
+            window.addEventListener("deviceorientation", onChange);
           } else {
             setError({
               code: 1,
@@ -58,14 +58,16 @@ export const useDeviceOrientation = () => {
           });
         });
     } else {
-      window.addEventListener("deviceorientationabsolute", onChange, true);
-      // window.addEventListener("deviceorientation", onChange, false);
+      window.addEventListener("deviceorientationabsolute", onChange);
     }
   };
 
   const cleanUpDeviceOrientation = () => {
-    window.removeEventListener("deviceorientationabsolute", onChange, true);
-    // window.removeEventListener("deviceorientation", onChange, false);
+    if (isIos) {
+      window.removeEventListener("deviceorientation", onChange);
+    } else {
+      window.removeEventListener("deviceorientationabsolute", onChange);
+    }
     setDeviceOrientation(null);
     setError(null);
   };
