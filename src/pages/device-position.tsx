@@ -21,7 +21,7 @@ function DeviceOrientation() {
     isIos,
   } = useDeviceOrientation();
 
-  const compassleRef = useRef<HTMLImageElement | null>(null);
+  const compassRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
     getDeviceOrientation();
@@ -29,12 +29,12 @@ function DeviceOrientation() {
   }, []);
 
   useEffect(() => {
-    if (compassleRef.current) {
-      compassleRef.current.style.transform = `rotate(${deviceOrientation?.compass}deg)`;
+    if (compassRef.current) {
+      compassRef.current.style.transform = `rotate(${deviceOrientation?.compass}deg)`;
     }
     return () => {
-      if (compassleRef.current) {
-        compassleRef.current.style.transform = `rotate(0deg)`;
+      if (compassRef.current) {
+        compassRef.current.style.transform = `rotate(0deg)`;
       }
     };
   }, [deviceOrientation?.compass]);
@@ -75,7 +75,7 @@ function DeviceOrientation() {
         <CardContent>
           <div className="w-full h-96 grid place-items-center">
             <img
-              ref={compassleRef}
+              ref={compassRef}
               className="h-72 w-72"
               src={compass}
               alt="compass-needle"
