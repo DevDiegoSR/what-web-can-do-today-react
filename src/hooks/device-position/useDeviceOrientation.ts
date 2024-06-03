@@ -58,7 +58,7 @@ export const useDeviceOrientation = () => {
           });
         });
     } else {
-      window.addEventListener("deviceorientationabsolute", onChange, false);
+      window.addEventListener("deviceorientationabsolute", onChange, true);
     }
   };
 
@@ -66,7 +66,7 @@ export const useDeviceOrientation = () => {
     if (isIos) {
       // window.removeEventListener("deviceorientation", onChange, false);
     } else {
-      window.removeEventListener("deviceorientationabsolute", onChange, false);
+      window.removeEventListener("deviceorientationabsolute", onChange);
     }
     setDeviceOrientation(null);
     setError(null);
