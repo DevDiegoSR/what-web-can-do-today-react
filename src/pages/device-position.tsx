@@ -30,14 +30,14 @@ function DeviceOrientation() {
 
   useEffect(() => {
     if (compassleRef.current) {
-      compassleRef.current.style.transform = `rotate(${deviceOrientation?.alpha}deg)`;
+      compassleRef.current.style.transform = `rotate(${deviceOrientation?.compass}deg)`;
     }
     return () => {
       if (compassleRef.current) {
         compassleRef.current.style.transform = `rotate(0deg)`;
       }
     };
-  }, [deviceOrientation?.alpha]);
+  }, [deviceOrientation?.compass]);
 
   console.log(isIos);
 
