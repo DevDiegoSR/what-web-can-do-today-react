@@ -45,7 +45,7 @@ function DeviceOrientation() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Device Orientation 1503</CardTitle>
+          <CardTitle>Device Orientation 1540</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid gap-4 mb-6">

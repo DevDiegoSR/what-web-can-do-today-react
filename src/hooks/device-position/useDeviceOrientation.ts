@@ -43,7 +43,7 @@ export const useDeviceOrientation = () => {
       DeviceOrientationEvent.requestPermission() // requestPermission does not exist on DeviceOrientationEvent
         .then((response: any) => {
           if (response === "granted") {
-            // window.addEventListener("deviceorientation", onChange, false);
+            window.addEventListener("deviceorientation", onChange, true);
           } else {
             setError({
               code: 1,
@@ -64,7 +64,7 @@ export const useDeviceOrientation = () => {
 
   const cleanUpDeviceOrientation = () => {
     if (isIos) {
-      // window.removeEventListener("deviceorientation", onChange, false);
+      window.removeEventListener("deviceorientation", onChange);
     } else {
       window.removeEventListener("deviceorientationabsolute", onChange);
     }
