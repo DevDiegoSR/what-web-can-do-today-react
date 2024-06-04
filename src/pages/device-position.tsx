@@ -33,22 +33,8 @@ function DeviceOrientation() {
 
   useEffect(() => {
     if (compassRef.current && deviceOrientation?.compass) {
-      const orientationCorrection = {
-        "portrait-primary-0": 0, // android
-        "portrait-primary-90": 0,
-        "landscape-primary-90": 270, // android
-        "landscape-primary-0": 90,
-        "portrait-secondary-180": 180, // android
-        "portrait-secondary-270": 180,
-        "landscape-secondary-270": 90, // android
-        "landscape-secondary-180": 270,
-      };
-
       compassRef.current.style.transform = `rotate(${
-        deviceOrientation.compass +
-        orientationCorrection[
-          `${orientation.type}-${orientation.angle}` as keyof typeof orientationCorrection
-        ]
+        deviceOrientation.compass + orientation.correctionAngle
       }deg)`;
     }
     return () => {
@@ -56,13 +42,13 @@ function DeviceOrientation() {
         compassRef.current.style.transform = `rotate(0deg)`;
       }
     };
-  }, [deviceOrientation?.compass, orientation.type, orientation.angle]);
+  }, [deviceOrientation?.compass, orientation.correctionAngle]);
 
   return (
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Device Orientation 123</CardTitle>
+          <CardTitle>Device Orientation</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid gap-4 mb-6">
@@ -79,6 +65,9 @@ function DeviceOrientation() {
             <li>error: {error?.message}</li>
             <li>orientation (angle): {orientation?.angle}</li>
             <li>orientation (type): {orientation?.type}</li>
+            <li>
+              orientation (correctionAngle): {orientation?.correctionAngle}
+            </li>
           </ul>
         </CardContent>
       </Card>
