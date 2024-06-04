@@ -11,6 +11,7 @@ import {
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 
 import compass from "../assets/compass.svg";
+import { useOrientation } from "@/hooks/orientation/useOrientation";
 
 function DeviceOrientation() {
   const {
@@ -21,6 +22,8 @@ function DeviceOrientation() {
     isIos,
   } = useDeviceOrientation();
 
+  const { orientation } = useOrientation();
+
   const compassRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -29,15 +32,17 @@ function DeviceOrientation() {
   }, []);
 
   useEffect(() => {
-    if (compassRef.current) {
-      compassRef.current.style.transform = `rotate(${deviceOrientation?.compass}deg)`;
+    if (compassRef.current && deviceOrientation?.compass) {
+      compassRef.current.style.transform = `rotate(${
+        deviceOrientation.compass + (360 - orientation.angle)
+      }deg)`;
     }
     return () => {
       if (compassRef.current) {
         compassRef.current.style.transform = `rotate(0deg)`;
       }
     };
-  }, [deviceOrientation?.compass]);
+  }, [deviceOrientation?.compass, orientation.angle]);
 
   console.log(isIos);
 
@@ -45,7 +50,7 @@ function DeviceOrientation() {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Device Orientation 1540</CardTitle>
+          <CardTitle>Device Orientation</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid gap-4 mb-6">
@@ -60,6 +65,8 @@ function DeviceOrientation() {
             </li>
             <li>compass: {deviceOrientation?.compass}</li>
             <li>error: {error?.message}</li>
+            <li>orientation (angle): {orientation?.angle}</li>
+            <li>orientation (type): {orientation?.type}</li>
           </ul>
         </CardContent>
       </Card>
