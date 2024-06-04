@@ -33,8 +33,18 @@ function DeviceOrientation() {
 
   useEffect(() => {
     if (compassRef.current && deviceOrientation?.compass) {
+      const orientationCorrection = {
+        "portrait-primary": 0,
+        "landscape-primary": 0,
+        "portrait-secondary": 0,
+        "landscape-secondary": 0,
+      };
+
       compassRef.current.style.transform = `rotate(${
-        deviceOrientation.compass + (360 - orientation.angle)
+        deviceOrientation.compass +
+        orientationCorrection[
+          orientation.type as keyof typeof orientationCorrection
+        ]
       }deg)`;
     }
     return () => {
@@ -42,9 +52,7 @@ function DeviceOrientation() {
         compassRef.current.style.transform = `rotate(0deg)`;
       }
     };
-  }, [deviceOrientation?.compass, orientation.angle]);
-
-  console.log(isIos);
+  }, [deviceOrientation?.compass, orientation.type]);
 
   return (
     <>
@@ -72,7 +80,7 @@ function DeviceOrientation() {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>alpha</CardTitle>
+          <CardTitle>compass</CardTitle>
           <CardDescription>
             Returns device's current heading (direction) in degrees, counted
             counterclockwise from the North (0) through West (90), South (180)
