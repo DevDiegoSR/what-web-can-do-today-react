@@ -3,6 +3,23 @@ import { useState } from "react";
 import { TDeviceOrientation, TDeviceOrientationError } from "./@types/index";
 import { DetectDevice } from "@/utils/detect-device/DetectDevice";
 
+const getCorrectionAngle = (type: string, angle: number) => {
+  const correctionAngle = {
+    // android
+    "portrait-primary-0": 0,
+    "landscape-primary-90": 270,
+    "portrait-secondary-180": 180,
+    "landscape-secondary-270": 90,
+    // ios
+    "portrait-primary-90": 0,
+    "landscape-primary-0": 90,
+    "portrait-secondary-270": 180,
+    "landscape-secondary-180": 270,
+  };
+
+  return correctionAngle[`${type}-${angle}` as keyof typeof correctionAngle];
+};
+
 export const useDeviceOrientation = () => {
   const [deviceOrientation, setDeviceOrientation] =
     useState<TDeviceOrientation | null>(null);
@@ -17,15 +34,22 @@ export const useDeviceOrientation = () => {
     // @ts-ignore
     const compass = event.webkitCompassHeading ?? event.alpha;
 
+    const { angle, type } = window.screen.orientation;
+    const correctionAngle = getCorrectionAngle(type, angle);
+
     setDeviceOrientation({
       absolute: event.absolute,
       alpha: event.alpha,
       beta: event.beta,
       gamma: event.gamma,
       timestamp: event.timeStamp,
+      angle,
+      type,
+      correctionAngle,
       // @ts-ignore
       webkitCompassHeading: event.webkitCompassHeading,
       compass,
+      absoluteCompass: compass + correctionAngle,
     });
   };
 

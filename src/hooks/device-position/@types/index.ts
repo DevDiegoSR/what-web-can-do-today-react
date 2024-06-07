@@ -4,8 +4,12 @@ export type TDeviceOrientation = {
   beta: number | null;
   gamma: number | null;
   timestamp: number;
+  angle: number;
+  type: string;
+  correctionAngle: number;
   webkitCompassHeading?: number | null;
   compass: number | null;
+  absoluteCompass: number | null;
 };
 
 enum OrientationErrorCode {

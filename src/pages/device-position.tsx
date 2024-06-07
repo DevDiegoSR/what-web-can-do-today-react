@@ -11,7 +11,6 @@ import {
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 
 import compass from "../assets/compass.svg";
-import { useOrientation } from "@/hooks/orientation/useOrientation";
 
 function DeviceOrientation() {
   const {
@@ -22,8 +21,6 @@ function DeviceOrientation() {
     isIos,
   } = useDeviceOrientation();
 
-  const { orientation } = useOrientation();
-
   const compassRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -33,16 +30,14 @@ function DeviceOrientation() {
 
   useEffect(() => {
     if (compassRef.current && deviceOrientation?.compass) {
-      compassRef.current.style.transform = `rotate(${
-        deviceOrientation.compass + orientation.correctionAngle
-      }deg)`;
+      compassRef.current.style.transform = `rotate(${deviceOrientation.absoluteCompass}deg)`;
     }
     return () => {
       if (compassRef.current) {
         compassRef.current.style.transform = `rotate(0deg)`;
       }
     };
-  }, [deviceOrientation?.compass, orientation.correctionAngle]);
+  }, [deviceOrientation?.absoluteCompass]);
 
   return (
     <>
@@ -52,22 +47,21 @@ function DeviceOrientation() {
         </CardHeader>
         <CardContent>
           <ul className="grid gap-4 mb-6">
+            <li>isIos: {String(isIos)}</li>
             <li>absolute: {deviceOrientation?.absolute}</li>
             <li>alpha: {deviceOrientation?.alpha}</li>
             <li>beta: {deviceOrientation?.beta}</li>
             <li>gamma: {deviceOrientation?.gamma}</li>
             <li>timestamp: {deviceOrientation?.timestamp}</li>
-            <li>isIos: {String(isIos)}</li>
+            <li>error: {error?.message}</li>
+            <li>angle: {deviceOrientation?.angle}</li>
+            <li>type: {deviceOrientation?.type}</li>
+            <li>correctionAngle: {deviceOrientation?.correctionAngle}</li>
             <li>
               webkitCompassHeading: {deviceOrientation?.webkitCompassHeading}
             </li>
             <li>compass: {deviceOrientation?.compass}</li>
-            <li>error: {error?.message}</li>
-            <li>orientation (angle): {orientation?.angle}</li>
-            <li>orientation (type): {orientation?.type}</li>
-            <li>
-              orientation (correctionAngle): {orientation?.correctionAngle}
-            </li>
+            <li>absoluteCompass: {deviceOrientation?.absoluteCompass}</li>
           </ul>
         </CardContent>
       </Card>
