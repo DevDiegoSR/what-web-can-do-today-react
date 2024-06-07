@@ -7,25 +7,30 @@ export function useOrientation() {
     correctionAngle: 0,
   });
 
-  const onChange = () => {
-    const { angle, type } = window.screen.orientation;
-
+  const getCorrectionAngle = (type: string, angle: number) => {
     const correctionAngle = {
-      "portrait-primary-0": 0, // android
+      // android
+      "portrait-primary-0": 0,
+      "landscape-primary-90": 270,
+      "portrait-secondary-180": 180,
+      "landscape-secondary-270": 90,
+      // ios
       "portrait-primary-90": 0,
-      "landscape-primary-90": 270, // android
       "landscape-primary-0": 90,
-      "portrait-secondary-180": 180, // android
       "portrait-secondary-270": 180,
-      "landscape-secondary-270": 90, // android
       "landscape-secondary-180": 270,
     };
+
+    return correctionAngle[`${type}-${angle}` as keyof typeof correctionAngle];
+  };
+
+  const onChange = () => {
+    const { angle, type } = window.screen.orientation;
 
     setOrientation({
       angle,
       type,
-      correctionAngle:
-        correctionAngle[`${type}-${angle}` as keyof typeof correctionAngle],
+      correctionAngle: getCorrectionAngle(type, angle),
     });
   };
 

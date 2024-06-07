@@ -45,7 +45,6 @@ export function WatchPositionProvider({
   };
 
   const onChange = ({ coords, timestamp }: TPosition) => {
-    console.log(coords);
     setPosition({
       coords,
       timestamp,

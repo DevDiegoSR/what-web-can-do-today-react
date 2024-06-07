@@ -14,6 +14,9 @@ export const useDeviceOrientation = () => {
   });
 
   const onChange = (event: DeviceOrientationEvent) => {
+    // @ts-ignore
+    const compass = event.webkitCompassHeading ?? event.alpha;
+
     setDeviceOrientation({
       absolute: event.absolute,
       alpha: event.alpha,
@@ -22,8 +25,7 @@ export const useDeviceOrientation = () => {
       timestamp: event.timeStamp,
       // @ts-ignore
       webkitCompassHeading: event.webkitCompassHeading,
-      // @ts-ignore
-      compass: event.webkitCompassHeading ?? event.alpha,
+      compass,
     });
   };
 
