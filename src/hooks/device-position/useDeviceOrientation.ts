@@ -52,7 +52,7 @@ export const useDeviceOrientation = () => {
       webkitCompassHeading: event.webkitCompassHeading,
       compass,
       absoluteCompass:
-        absoluteCompass > 360 ? 360 - absoluteCompass : absoluteCompass,
+        absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
     });
   };
 
