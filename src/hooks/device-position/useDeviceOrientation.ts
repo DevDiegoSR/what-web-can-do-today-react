@@ -32,7 +32,8 @@ export const useDeviceOrientation = () => {
 
   const onChange = (event: DeviceOrientationEvent) => {
     // @ts-ignore
-    const compass = event.webkitCompassHeading ?? event.alpha;
+    // const compass = event.webkitCompassHeading ?? event.alpha; // webkitCompassHeading = clockwise
+    const compass = event.alpha as number;
 
     const { angle, type } = window.screen.orientation;
     const correctionAngle = getCorrectionAngle(type, angle);
@@ -51,9 +52,8 @@ export const useDeviceOrientation = () => {
       // @ts-ignore
       webkitCompassHeading: event.webkitCompassHeading,
       compass,
-      absoluteCompass,
-      // absoluteCompass:
-      //   absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
+      absoluteCompass:
+        absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
     });
   };
 

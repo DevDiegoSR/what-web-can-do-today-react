@@ -69,9 +69,9 @@ function DeviceOrientation() {
         <CardHeader>
           <CardTitle>compass</CardTitle>
           <CardDescription>
-            Returns device's current heading (direction) in degrees, counted
-            counterclockwise from the North (0) through West (90), South (180)
-            and East (270).
+            Alpha returns device's current heading (direction) in degrees,
+            counted counterclockwise from the North (0) through West (90), South
+            (180) and East (270).
           </CardDescription>
         </CardHeader>
         <CardContent>
