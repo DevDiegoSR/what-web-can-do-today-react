@@ -51,8 +51,9 @@ export const useDeviceOrientation = () => {
       // @ts-ignore
       webkitCompassHeading: event.webkitCompassHeading,
       compass,
-      absoluteCompass:
-        absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
+      absoluteCompass,
+      // absoluteCompass:
+      //   absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
     });
   };
 
@@ -93,9 +94,9 @@ export const useDeviceOrientation = () => {
 
   const cleanUpDeviceOrientation = () => {
     if (isIos) {
-      window.removeEventListener("deviceorientation", onChange);
+      window.removeEventListener("deviceorientation", onChange, true);
     } else {
-      window.removeEventListener("deviceorientationabsolute", onChange);
+      window.removeEventListener("deviceorientationabsolute", onChange, true);
     }
     setDeviceOrientation(null);
     setError(null);
