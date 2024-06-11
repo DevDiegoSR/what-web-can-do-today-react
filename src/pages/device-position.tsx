@@ -60,6 +60,10 @@ function DeviceOrientation() {
             <li>
               webkitCompassHeading: {deviceOrientation?.webkitCompassHeading}
             </li>
+            <li>
+              webkitCompassHeadingCounterclockwise:{" "}
+              {deviceOrientation?.webkitCompassHeadingCounterclockwise}
+            </li>
             <li>compass: {deviceOrientation?.compass}</li>
             <li>absoluteCompass: {deviceOrientation?.absoluteCompass}</li>
           </ul>

@@ -8,6 +8,7 @@ export type TDeviceOrientation = {
   type: string;
   correctionAngle: number;
   webkitCompassHeading?: number | null;
+  webkitCompassHeadingCounterclockwise?: number | null;
   compass: number | null;
   absoluteCompass: number | null;
 };
