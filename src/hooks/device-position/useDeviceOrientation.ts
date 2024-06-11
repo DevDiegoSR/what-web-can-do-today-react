@@ -33,7 +33,7 @@ export const useDeviceOrientation = () => {
   const onChange = (event: DeviceOrientationEvent) => {
     const webkitCompassHeadingCounterclockwise =
       // @ts-ignore
-      typeof event.webkitCompassHeading === Number
+      typeof event.webkitCompassHeading === "number"
         ? // @ts-ignore
           (360 - event.webkitCompassHeading) % 360
         : undefined;
