@@ -12,9 +12,9 @@ const getCorrectionAngle = (type: string, angle: number) => {
     "landscape-secondary-270": 90,
     // ios
     "portrait-primary-90": 0,
-    "landscape-primary-0": 0,
+    "landscape-primary-0": 270,
     "portrait-secondary-270": 180,
-    "landscape-secondary-180": 0,
+    "landscape-secondary-180": 90,
   };
 
   return correctionAngle[`${type}-${angle}` as keyof typeof correctionAngle];
