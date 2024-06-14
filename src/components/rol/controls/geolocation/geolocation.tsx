@@ -6,8 +6,6 @@ import { twMerge } from "tailwind-merge";
 
 import { MapContext } from "../../map-context";
 
-import OlMap from "ol/Map";
-
 import { useWatchPosition } from "@/hooks/geolocation/useWatchPosition";
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 import { GeolocationMarker } from "./utils/GeolocationMarker";
@@ -24,6 +22,7 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
   const isMarkerFirstRenderRef = useRef(true);
   const isFirstRenderRef = useRef(true);
 
+  // @ts-ignore
   const { position, error, watcher, startWatchPosition, stopWatchPosition } =
     useWatchPosition();
   const { deviceOrientation, getDeviceOrientation, cleanUpDeviceOrientation } =
