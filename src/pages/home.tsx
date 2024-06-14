@@ -120,7 +120,7 @@ export function Home() {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Map</CardTitle>
+          <CardTitle>Map 1</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid gap-2">

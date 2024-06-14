@@ -46,7 +46,7 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
   useEffect(() => {
     if (deviceOrientation?.absoluteCompass) {
       geolocationMarker?.setGeolocationMarkerRotation(
-        deviceOrientation.absoluteCompass
+        360 - deviceOrientation.absoluteCompass
       );
     }
   }, [deviceOrientation?.absoluteCompass]);
