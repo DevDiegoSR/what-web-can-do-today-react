@@ -2,7 +2,7 @@ import {
   MdMyLocation,
   MdGroupWork,
   MdOutlineScreenRotation,
-  Md3DRotation,
+  Md3dRotation,
   MdLeakAdd,
   MdOutlineWifiTethering,
   MdOutlineSignalCellularConnectedNoInternet4Bar,
@@ -14,6 +14,7 @@ import {
   MdContentPaste,
   MdMouse,
   MdColorize,
+  MdMap,
 } from "react-icons/md";
 
 export const homeRoutes = {
@@ -43,7 +44,7 @@ export const homeRoutes = {
       id: "4",
       to: "/device-motion",
       title: "Device Motion",
-      icon: <Md3DRotation size={20} />,
+      icon: <Md3dRotation size={20} />,
       isAvailable: true,
     },
     {
@@ -125,6 +126,15 @@ export const homeRoutes = {
       to: "/eye-dropper",
       title: "Eye Dropper",
       icon: <MdColorize size={20} />,
+      isAvailable: true,
+    },
+  ],
+  map: [
+    {
+      id: "1",
+      to: "/map",
+      title: "Map",
+      icon: <MdMap size={20} />,
       isAvailable: true,
     },
   ],

@@ -22,7 +22,6 @@ function DeviceOrientation() {
   } = useDeviceOrientation();
 
   const compassRef = useRef<HTMLImageElement | null>(null);
-  const userRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
     getDeviceOrientation();
@@ -30,16 +29,12 @@ function DeviceOrientation() {
   }, []);
 
   useEffect(() => {
-    if (compassRef.current && userRef.current && deviceOrientation?.compass) {
+    if (compassRef.current && deviceOrientation?.compass) {
       compassRef.current.style.transform = `rotate(${deviceOrientation.absoluteCompass}deg)`;
-      userRef.current.style.transform = `rotate(${
-        360 - (deviceOrientation.absoluteCompass as number)
-      }deg)`;
     }
     return () => {
-      if (compassRef.current && userRef.current) {
+      if (compassRef.current) {
         compassRef.current.style.transform = `rotate(0deg)`;
-        userRef.current.style.transform = `rotate(0deg)`;
       }
     };
   }, [deviceOrientation?.absoluteCompass]);
@@ -84,16 +79,10 @@ function DeviceOrientation() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="w-full grid gap-12 place-items-center">
+          <div className="w-full h-96 grid place-items-center">
             <img
               ref={compassRef}
-              className="w-1/2"
-              src={compass}
-              alt="compass-needle"
-            />
-            <img
-              ref={userRef}
-              className="w-1/2 grayscale"
+              className="h-72 w-72"
               src={compass}
               alt="compass-needle"
             />

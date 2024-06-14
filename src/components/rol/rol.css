@@ -1,0 +1,23 @@
+/* ----- scale-line ----- */
+.ol-scale-line {
+  @apply relative translate-y-2 -translate-x-2;
+}
+
+/* .ol-scale-line-inner {
+} */
+
+.ol-scale-bar {
+  @apply relative translate-y-2 -translate-x-2;
+}
+
+/* .ol-scale-bar-inner {
+} */
+
+.ol-scale-bar-inverted .ol-scale-singlebar-even {
+  background-color: var(--ol-background-color);
+}
+
+.ol-scale-bar-inverted .ol-scale-singlebar-odd {
+  background-color: var(--ol-subtle-foreground-color);
+}
+/* ----- scale-line ----- */

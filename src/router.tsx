@@ -16,6 +16,8 @@ import { DeviceMemory } from "./pages/device-memory.tsx";
 
 import { NotFound } from "./pages/not-found.tsx";
 
+import { MapTemp } from "./pages/map.tsx";
+
 export function Router() {
   return (
     <Routes>
@@ -34,6 +36,8 @@ export function Router() {
         <Route path="vibration" element={<Vibration />} />
         <Route path="battery-status" element={<BatteryStatus />} />
         <Route path="device-memory" element={<DeviceMemory />} />
+
+        <Route path="map" element={<MapTemp />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>
