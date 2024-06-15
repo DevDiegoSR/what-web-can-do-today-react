@@ -46,7 +46,7 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
   useEffect(() => {
     if (deviceOrientation?.azimuth) {
       geolocationMarker?.setGeolocationMarkerRotation(
-        360 - deviceOrientation.azimuth
+        deviceOrientation.azimuth
       );
     }
   }, [deviceOrientation?.azimuth]);
