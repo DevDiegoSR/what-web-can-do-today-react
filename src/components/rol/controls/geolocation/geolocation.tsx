@@ -44,12 +44,12 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
   }, [watcher]);
 
   useEffect(() => {
-    if (deviceOrientation?.absoluteCompass) {
+    if (deviceOrientation?.azimuth) {
       geolocationMarker?.setGeolocationMarkerRotation(
-        360 - deviceOrientation.absoluteCompass
+        360 - deviceOrientation.azimuth
       );
     }
-  }, [deviceOrientation?.absoluteCompass]);
+  }, [deviceOrientation?.azimuth]);
 
   useEffect(() => {
     if (position?.coords) {

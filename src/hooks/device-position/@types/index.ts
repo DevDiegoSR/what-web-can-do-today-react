@@ -11,6 +11,7 @@ export type TDeviceOrientation = {
   webkitCompassHeadingCounterclockwise?: number | null;
   compass: number | null;
   absoluteCompass: number | null;
+  azimuth: number | null;
 };
 
 enum OrientationErrorCode {

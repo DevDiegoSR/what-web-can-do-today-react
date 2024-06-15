@@ -38,13 +38,20 @@ export const useDeviceOrientation = () => {
           (360 - event.webkitCompassHeading) % 360
         : undefined;
 
+    // alpha android
+    // webkitCompassHeadingCounterclockwise ios
     const compass =
       webkitCompassHeadingCounterclockwise ?? (event.alpha as number);
 
     const { angle, type } = window.screen.orientation;
     const correctionAngle = getCorrectionAngle(type, angle);
 
-    const absoluteCompass = compass + correctionAngle;
+    // compass + device orientation
+    const _absoluteCompass = compass + correctionAngle;
+    const absoluteCompass =
+      _absoluteCompass > 360 ? _absoluteCompass - 360 : _absoluteCompass;
+
+    const azimuth = 360 - absoluteCompass;
 
     setDeviceOrientation({
       absolute: event.absolute,
@@ -59,8 +66,8 @@ export const useDeviceOrientation = () => {
       webkitCompassHeading: event.webkitCompassHeading,
       webkitCompassHeadingCounterclockwise,
       compass,
-      absoluteCompass:
-        absoluteCompass > 360 ? absoluteCompass - 360 : absoluteCompass,
+      absoluteCompass,
+      azimuth,
     });
   };
 
