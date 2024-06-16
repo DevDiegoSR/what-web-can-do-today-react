@@ -126,7 +126,7 @@ function DeviceOrientation() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="w-full h-96 grid place-items-center">
+          <div className="w-full relative h-96 grid place-items-center">
             <img
               ref={azimuthRef}
               className="absolute h-16 w-16"
