@@ -11,6 +11,8 @@ import {
 import { useDeviceOrientation } from "@/hooks/device-position/useDeviceOrientation";
 
 import compass from "../assets/compass.svg";
+import azimuthArrow from "../assets/azimuth_arrow.svg";
+import azimuthCompassRose from "../assets/azimuth_compass_rose.svg";
 
 function DeviceOrientation() {
   const {
@@ -86,18 +88,19 @@ function DeviceOrientation() {
         <CardHeader>
           <CardTitle>Compass (Always Pointing North)</CardTitle>
           <CardDescription>
-            <p>
-              Returns device's current heading (direction) in degrees, counted
-              counterclockwise from the North (0) through West (90), South (180)
-              and East (270).
-            </p>
-            <p>Android = alpha | IOS = webkitCompassHeadingCounterclockwise</p>
-            <p>
-              *webkitCompassHeadingCounterclockwise = (360 -
-              event.webkitCompassHeading) % 360
-            </p>
-            <p>*absoluteCompass = compass + correctionAngle</p>
-            <p>*correctionAngle = device orientation angle</p>
+            Returns device's current heading (direction) in degrees, counted
+            counterclockwise from the North (0) through West (90), South (180)
+            and East (270).
+            <br />
+            Android = alpha | IOS = webkitCompassHeadingCounterclockwise
+            <br />
+            *webkitCompassHeadingCounterclockwise = (360 -
+            event.webkitCompassHeading) % 360
+            <br />
+            *absoluteCompass = compass + correctionAngle
+            <br />
+            *correctionAngle = device orientation angle
+            <br />
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -106,7 +109,7 @@ function DeviceOrientation() {
               ref={compassRef}
               className="h-72 w-72"
               src={compass}
-              alt="compass-needle"
+              alt="compass"
             />
           </div>
         </CardContent>
@@ -115,21 +118,22 @@ function DeviceOrientation() {
         <CardHeader>
           <CardTitle>Azimuth</CardTitle>
           <CardDescription>
-            <p>
-              The horizontal angle of an object from a reference point,
-              typically north or south.
-            </p>
-            <p>360 - absoluteCompass</p>
+            The horizontal angle of an object from a reference point, typically
+            north or south.
+            <br />
+            360 - absoluteCompass
+            <br />
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="w-full h-96 grid place-items-center">
             <img
               ref={azimuthRef}
-              className="h-72 w-72 -hue-rotate-90"
-              src={compass}
+              className="absolute h-16 w-16"
+              src={azimuthArrow}
               alt="compass-needle"
             />
+            <img className="h-72 w-72" src={azimuthCompassRose} alt="compass" />
           </div>
         </CardContent>
       </Card>
