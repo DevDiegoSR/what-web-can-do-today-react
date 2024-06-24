@@ -13,7 +13,7 @@ export function MapTemp() {
         center={[-45.967823, -23.300423]}
       >
         <TileLayer source={OpenStreetMap} zIndex={0} />
-        <ROlGeolocation className="inset-4" />
+        <ROlGeolocation className="top-8 left-6" />
       </Map>
     </main>
   );

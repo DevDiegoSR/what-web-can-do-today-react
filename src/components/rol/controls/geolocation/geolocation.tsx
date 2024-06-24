@@ -28,6 +28,8 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
     map: map as OlMap,
   });
 
+  const [isChecked, setIsChecked] = useState(false);
+
   const [geolocationMarker, setGeolocationMarker] =
     useState<GeolocationMarker>();
   const isMarkerFirstRenderRef = useRef(true);
@@ -92,6 +94,17 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
     };
   }, [deviceOrientation?.absoluteCompass]);
 
+  useEffect(() => {
+    if (isChecked && deviceOrientation?.azimuth) {
+      const rotationInRad =
+        ((360 - deviceOrientation?.azimuth) * Math.PI) / 180.0;
+
+      map?.getView().animate({
+        rotation: rotationInRad,
+      });
+    }
+  }, [deviceOrientation?.azimuth, isChecked]);
+
   const isWatchPositionActive = watcher !== undefined;
 
   function handleWatchPosition() {
@@ -153,7 +166,7 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
         variant="outline"
         size="icon"
         className="rounded-full"
-        onClick={() => {}}
+        onClick={() => setIsChecked(!isChecked)}
       >
         <Map className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">{"zoom to extent"}</span>
