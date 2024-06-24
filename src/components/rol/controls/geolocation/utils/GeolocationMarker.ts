@@ -69,10 +69,18 @@ export class GeolocationMarker {
     return (degrees * Math.PI) / 180.0;
   }
 
-  public setGeolocationMarkerRotation(rotation: number) {
+  private radToDeg(radians: number) {
+    return radians * (180.0 / Math.PI);
+  }
+
+  public setGeolocationMarkerRotation(rotation: number, mapRotation: number) {
     if (this.vectorLayer) {
+      const mapRotationInDeg = this.radToDeg(mapRotation);
+      const absoluteRotation = (rotation + mapRotationInDeg) % 360;
+      const rotationInRad = this.degToRad(Math.round(absoluteRotation));
+
       const style = this.vectorLayer.getStyle() as Style;
-      style?.getImage()?.setRotation(this.degToRad(Math.round(rotation)));
+      style?.getImage()?.setRotation(rotationInRad);
       this.vectorLayer.getSource()?.changed();
     }
   }
