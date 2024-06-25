@@ -102,6 +102,8 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
       map?.getView().animate({
         rotation: rotationInRad,
       });
+
+      map?.getView().changed();
     }
   }, [deviceOrientation?.azimuth, isChecked]);
 
