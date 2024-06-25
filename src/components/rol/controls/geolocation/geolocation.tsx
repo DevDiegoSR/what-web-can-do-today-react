@@ -99,11 +99,13 @@ export function ROlGeolocation({ className, ...props }: ROlGeolocationProps) {
       const rotationInRad =
         ((360 - deviceOrientation?.azimuth) * Math.PI) / 180.0;
 
-      map?.getView().animate({
-        rotation: rotationInRad,
-      });
+      // map?.getView().animate({
+      //   rotation: rotationInRad,
+      // });
 
-      map?.getView().changed();
+      map?.getView().setRotation(rotationInRad);
+
+      // map?.changed();
     }
   }, [deviceOrientation?.azimuth, isChecked]);
 
