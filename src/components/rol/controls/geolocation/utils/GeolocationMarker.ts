@@ -73,7 +73,7 @@ export class GeolocationMarker {
     return radians * (180.0 / Math.PI);
   }
 
-  public setGeolocationMarkerRotation(rotation: number, mapRotation: number) {
+  public setGeolocationMarkerRotation(rotation: number, mapRotation = 0) {
     if (this.vectorLayer) {
       const mapRotationInDeg = this.radToDeg(mapRotation);
       const absoluteRotation = (rotation + mapRotationInDeg) % 360;

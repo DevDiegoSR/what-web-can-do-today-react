@@ -1,3 +1,7 @@
+import { useContext, useEffect, useRef, useState } from "react";
+
+import OlMap from "ol/Map";
+
 import { Map } from "@/components/rol/map";
 import { OpenStreetMap } from "@/components/rol/sources";
 import { TileLayer } from "@/components/rol/tile-layer";
@@ -6,9 +10,9 @@ import { Button } from "@/components/ui/button";
 
 import { useGetCurrentPosition } from "@/hooks/geolocation/useGetCurrentPosition";
 import { useWatchPosition } from "@/hooks/geolocation/useWatchPosition";
-import { useContext, useEffect, useRef, useState } from "react";
 import { MapContext } from "@/components/rol/map-context";
 import { GeolocationMarker } from "@/components/rol/controls/geolocation/utils/GeolocationMarker";
+import { useRotation } from "@/components/rol/controls/geolocation/hooks/useRotation";
 
 function GetCurrentPosition() {
   const { position, error, getCurrentPosition, clearCurrentPosition } =
@@ -55,6 +59,11 @@ function WatchPosition() {
   const isMarkerFirstRenderRef = useRef(true);
   const isFirstRenderRef = useRef(true);
 
+  const { currentRotation } = useRotation({
+    rotation: 0,
+    map: map as OlMap,
+  });
+
   const { position, error, watcher, startWatchPosition, stopWatchPosition } =
     useWatchPosition();
 
@@ -82,7 +91,7 @@ function WatchPosition() {
       geolocationMarker?.updateGeolocationMarker(position.coords, false);
       geolocationMarker?.setGeolocationMarkerRotation(
         position.coords.heading ?? 0,
-        0
+        currentRotation
       );
       return;
     }
